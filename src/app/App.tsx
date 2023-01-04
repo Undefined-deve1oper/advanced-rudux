@@ -1,10 +1,14 @@
-import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "./hooks/redux";
-import {fetchUsers} from "./store/reducers/ActionCreators";
+import React, { useEffect } from "react";
+import PostContainer from "./components/PostContainer";
+import PostContainer2 from "./components/PostContainer2";
+import { useAppDispatch, useAppSelector } from "./hooks/redux";
+import { fetchUsers } from "./store/reducers/ActionCreators";
 
 const App = () => {
     const dispatch = useAppDispatch();
-    const {users, isLoading, error} = useAppSelector(state => state.userReducer);
+    const { users, isLoading, error } = useAppSelector(
+        (state) => state.userReducer
+    );
 
     useEffect(() => {
         dispatch(fetchUsers());
@@ -14,7 +18,7 @@ const App = () => {
         return <h1>Loading...</h1>;
     }
     if (error) {
-        return <h1>{error}</h1>
+        return <h1>{error}</h1>;
     }
 
     return (
@@ -25,6 +29,8 @@ const App = () => {
                     <p>{user.email}</p>
                 </div>
             ))}
+            <PostContainer />
+            <PostContainer2 />
         </div>
     );
 };
